@@ -55,18 +55,14 @@
 
 1. Create kubernetes cluster definitions on S3 bucket
    ```sh
-   kops create cluster --cloud=aws --zones=us-east-2a --name=demo.k8.mbaclassesonline.com --dns-zone=mbaclassesonline.com --dns private 
+   kops create cluster --cloud=aws --zones=us-east-2a --name=demo.k8.mbaclassesonline.com --dns-zone=mbaclassesonline.com --dns private --ssh-public-key
     ```
 
 1. Create kubernetes cluser
     ```sh
     kops update cluster demo.k8.mbaclassesonline.com --yes
     ```
- 
-1. Insert key to ssh
-    ```sh
-    kops create secret --name demo.k8.mbaclassesonline.co sshpublickey admin -i ~/.ssh/newkey.pub
-    ```
+
 
 1. Validate your cluster
      ```sh
