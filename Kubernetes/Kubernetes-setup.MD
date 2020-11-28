@@ -62,6 +62,11 @@
     ```sh
     kops update cluster demo.k8.mbaclassesonline.com --yes
     ```
+ 
+1. Insert key to ssh
+    ```sh
+    kops create secret --name demo.k8.mbaclassesonline.co sshpublickey admin -i ~/.ssh/newkey.pub
+    ```
 
 1. Validate your cluster
      ```sh
@@ -94,6 +99,13 @@
     ```sh
      ssh -i ~/.ssh/id_rsa admin@api.demo.k8.mbaclassesonline.com
     ```   
+ 
+ 1. If ssh key was not added during build
+    ```sh
+    kops delete secret --name demo.k8.mbaclassesonline.co sshpublickey admin
+    kops create secret --name demo.k8.mbaclassesonline.co sshpublickey admin -i ~/.ssh/newkey.pub
+    kops update cluster --yes to reconfigure the auto-scaling groups
+    kops rolling-update cluster --name demo.k8.mbaclassesonline.co --yes to immediately roll all the machines so they have the new key (optional)
 
 1. To delete cluster
     ```sh
